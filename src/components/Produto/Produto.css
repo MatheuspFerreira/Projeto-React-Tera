@@ -1,0 +1,154 @@
+
+.produto-selected {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 210px;
+    height: 443px;
+    background-color: white;
+    margin: 0 1.25%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 2.5%;
+    background-color: white
+    
+
+}
+
+.produto-selected:hover {
+    box-shadow: 0px 10px 13px -7px #000000;
+
+}
+
+.display-top {
+    display: flex;
+
+}
+
+.discount-amount {
+    background-color: orange;
+    color: white;
+    width: 22%;
+    height: 43px;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-left: 7px;
+    margin-top: 7px;
+
+}
+
+.qnt-produto-span {
+    font-weight: bold;
+    
+}
+
+.Comprar__Content {
+    height: 43px;
+    width: 100%;
+}
+
+.qnt-produto {
+    background-color: white;
+    color: orange;
+    width: 22%;
+    height: 43px;
+    text-align: center;
+    font-size: 10px;
+    border-radius: 5px;
+    margin-left: 3%;
+    margin-top: 7px;
+    border: solid;
+    border-width: 1.8px;
+    padding-top: 4px;
+
+}
+
+.ul-stars {
+    display: flex;
+    position: relative;
+    left: 7%;
+    top: 9px;
+    width: 52px;
+
+}
+
+.imagens-promo {
+    width: 57.5%;
+    position: relative;
+    left: 21%;
+    top: 22px;
+
+}
+
+.condições-produto{
+    position: relative;
+    height: 150px;
+    top: 40px;
+    padding: 0 13px;
+
+}
+
+.descrição-do-produto {
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+.price-strike {
+    font-size: 12px;
+    margin: 10px 0px;
+    opacity: 55%;
+
+}
+
+.price-discount {
+    color: orange;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+.condição-pix {
+    padding-top: 5px;
+    font-size: 12px;
+    opacity: 60%;
+
+}
+
+.Bnt__Comprar {
+    background-color: orange;
+    color: white;
+    display: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    
+
+}
+
+.produto-selected:hover .Bnt__Comprar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+
+
+}
+
+.comprar-ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: center;
+    align-items: center;
+       
+   
+
+}

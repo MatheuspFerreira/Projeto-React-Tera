@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Cabin', sans-serif;
+}
+
+.Top__Container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 50px;
+
+}
+
+.Top__Container ul {
+    display: flex;
+
+}
+
+.Top__Container li {
+    margin: 0 45px;
+    font-size: 20px;
+    
+}
+
+.Top__a {
+    color: white;
+
+}
+
+.Top__a:hover {
+    color: grey;
+
+}
+
+.Top__dropdown {
+    font-family: 'Cabin', sans-serif;
+    font-size: 16px;
+
+}
+
+

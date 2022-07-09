@@ -1,0 +1,17 @@
+
+.Section__Container {
+    width: 100%;
+    background-color: black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 15px;
+    
+}
+
+.Section__Container h1 {
+    color: white;
+    font-size: 25px;
+    
+}

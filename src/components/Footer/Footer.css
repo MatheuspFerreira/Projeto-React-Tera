@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+
+
+footer {
+    background-color: rgb(10, 81, 173);
+    width: auto;
+    height: auto;
+
+}
+
+.footer__firstcontent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 70px;
+
+}
+
+
+
+.footer__textNewsLetters {
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    
+    
+}
+
+.footer__textNewsLetters h3 {
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: white;
+
+}
+
+
+.footer__formNews {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.input-news {
+    min-width: 200px;
+    width: 20%;
+    height: 34px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: none;
+    outline: 0;
+    text-align: left;
+    padding-left: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    
+
+}
+
+.footer__btnForm {
+    background-color: orange;
+    width: 12%;
+    min-width: 130px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    outline: 0;
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 25px;
+
+}
+
+.footer__btnForm:hover {
+    box-shadow: 0px 2px 21px -7px #000000;
+
+}
+
+.footer__btnForm:active {
+    background-color: orangered;
+
+}
+
+.second-content-footer {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.form-of-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.Second__FormaPagamento {
+    width: 30%;
+    min-width: 300px;
+    margin: 40px;
+    box-shadow: 0px 2px 21px -3px #000000;
+}
+
+
+
+.menu-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    
+}
+
+.menu-footer h3 {
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: 'Cabin', sans-serif;
+    color: white;
+    
+}
+
+.menu-footer ul {
+    display: flex;
+    padding: 0;
+    
+}
+
+.menu-footer li {
+    border: solid;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 90%;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    padding-top: 9px;
+    margin: 10px 5px 0px 5px;
+    background-color: white;
+    box-shadow: 0px 2px 21px -1px #000000;
+
+}
+
+.copyright {
+    color: white;
+    font-size: 14px;
+    font-family: 'Cabin', sans-serif;
+    margin: 10px 0;
+    text-align: center;
+
+}
+
+
+

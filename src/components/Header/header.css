@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+
+header {
+    font-family: 'Cabin', sans-serif;
+
+}
+
+.first-content {
+    min-height: 130px;
+    background-color: rgb(0, 104, 240);
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+}
+
+.link-header {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo-mz {
+    width: 33%;
+    min-width: 135px;
+ 
+}
+
+.container-buscador {
+    width: 35%;
+    display: flex;
+    justify-content: center;    
+
+}
+
+.buscador {
+    width: 78%;
+    height: 34px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    padding-left: 5px;
+    border: none;
+    outline: 0;
+    
+}
+
+.Bnt__Buscador {
+    width: 35px;
+    height: 32px;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    right: 30px;
+    
+}
+
+.Bnt__Buscador:active {
+    background-color: orangered;
+    
+}
+
+.Bnt__img {
+    width: 35px;
+    height: 34px;
+    border-radius: 9px;
+
+}
+
+.Login {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: 'Cabin', sans-serif;
+    
+    
+    
+}
+
+.login-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.nav-link {
+    color: white;
+    font-family: 'Cabin', sans-serif;
+
+}
+
+.nav-link:hover {
+    color: black;
+
+}
+
+
+.banner-login {
+    width: 29px;
+    height: 29px;
+    border-radius: 90%;
+    border: solid;
+    padding: 1px;
+
+}
+
+.Car-Content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.body-text {
+    color: white;
+    font-size: 15px;
+    margin-left: 20px;
+
+}
+
+.body-text2 {
+    color: white;
+    font-size: 15px;
+
+}
+
+.hiper-link {
+    color: white;
+    text-decoration: none;
+    font-family: 'Cabin', sans-serif;
+    
+}
+
+.hiper-link:hover {
+    text-decoration: underline;
+    
+}
+
+.hiper-link-banner1 {
+    margin-bottom: 20px;
+
+}
+
+.bg-light {
+    background-color: rgb(53, 52, 52);
+
+} 
+
+.menu-header {
+    display: flex;
+    margin-left: 500px;
+    padding: 13px;
+    
+}
+    
+.menu-li {
+    margin-left: 80px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Cabin', sans-serif;
+
+}
+
+.menu-li:hover {
+    text-decoration: underline;
+    
+}
+    
+
+  
