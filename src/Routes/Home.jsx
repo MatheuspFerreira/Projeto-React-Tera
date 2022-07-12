@@ -27,7 +27,7 @@ export function Home() {
     async function products () {
       try {
 
-        const response =  await fetch('https://projetotera-back-end.herokuapp.com/products/all');
+        const response =  await fetch('http://127.0.0.1:8000/api/products');
         const data =  await response.json();
         msgRecebida(data);
         alterarCarrengado(false);
@@ -42,8 +42,7 @@ export function Home() {
     }
     
   products();
-     
-              
+               
    
   }, []);
 
@@ -98,29 +97,7 @@ export function Home() {
     <img className="Banner__5" src={banner5} alt="" />
     <SECTION textSection={'⚡ Promoções Tech'}/>
 
-    <div className="Container__Products">
-
-      {carregando ? <CARREGANDO  /> : mensagens.map((currentMsg, index) => 
-        <Produto key = {`mensagens-${index}`}
-      
-          productName = {currentMsg.name}
-          value = {currentMsg.price}
-          valueStrike ={currentMsg.pricestrike}
-          discount = {currentMsg.discount}
-          stock = {currentMsg.stock}
-          imgProduct ={currentMsg.productimg}
-          payment = {currentMsg.payment}
-          starcondition = {1}
-          starcondition1 = {1}
-          starcondition2 = {1}
-          starcondition3 = {0}
-          starcondition4 = {0}
-        
-        />
-        
-      )}
-
-     </div>
+    
 
 
         

@@ -4,6 +4,8 @@ import './Footer.css'
 
 
 
+
+
 const newLettersData = { name:"", email:""};
 
 function nameNewLetters (event) {
@@ -18,13 +20,15 @@ function emailNewLetters (event) {
 
 }
 
-async function saveDataFormNewLetters () { 
+async function saveDataFormNewLetters (event) { 
+    
+    event.preventDefault();
 
     try {
 
         if ( newLettersData.name && newLettersData.email) {
         
-            const response = await fetch('https://projetotera-back-end.herokuapp.com/newletter/register',{
+            const response = await fetch('http://localhost:3000/newletter/register',{
                 method:'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify ({
@@ -35,11 +39,9 @@ async function saveDataFormNewLetters () {
                 })
             });
 
-            const data =  await response.json();
-
-            console.log(data);
-           
-    
+            let data =  await response.json()
+            alert(`${data.name} seu cadastro foi realizado com sucesso.`);
+            
         }else {
     
             alert('Você precisa preencher todos os campos')
@@ -64,10 +66,10 @@ export function Footer () {
                     <h3>MZ ELETRÔNICOS !!</h3>
                     <p>Receba ofertas exclusivas no seu e-mail</p>
                 </article>
-                <form className="footer__formNews">
+                <form className="footer__formNews" onSubmit={event => saveDataFormNewLetters(event)}>
                     <input  onChange={event => nameNewLetters (event)} className="input-news" type="text" name="form" id= "nome_form" placeholder="Digite seu nome" required/>
                     <input  onChange={event => emailNewLetters (event)} className="input-news" type="email" name="form" id="email_form" placeholder="Digite seu e-mail" required/>
-                    <button className="footer__btnForm" onClick={saveDataFormNewLetters}>CADASTRAR</button>
+                    <button className="footer__btnForm" >CADASTRAR</button>
                 </ form>
             </div>
             <div className="second-content-footer">
