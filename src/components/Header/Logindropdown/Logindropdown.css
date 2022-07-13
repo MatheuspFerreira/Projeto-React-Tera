@@ -48,6 +48,13 @@ span:hover {
     
 }
 
+.Login__Content--Disable {
+    display: none;
+    
+    
+}
+
+
 .Login__Img {
     width: 70%;
     margin-bottom: 60px;

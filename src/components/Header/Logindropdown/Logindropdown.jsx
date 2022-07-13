@@ -1,6 +1,6 @@
+import { CARREGANDO } from "../../Carregando";
 import 'antd/dist/antd.min.css';
-
-import { Button, Col, Drawer, Form, Input, Row, Space } from 'antd';
+import { Button, Col, Drawer, Form, Input, message, Row, Space } from 'antd';
 import { useState } from 'react';
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
@@ -10,6 +10,81 @@ import logoImg from '../../../_assets/Logoazul.png'
 
 
 export function Logindropdown () {
+
+    const [errorLogin, setErrorLogin] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [loginSucessfull, setLoginSucessfull] = useState(false);
+    const [loginData, setLoginData]= useState([]);
+    
+
+    const getLogin = { email:"", password:""};
+
+    function loginEmail (event) {
+
+        getLogin.email = event.target.value
+        console.log(getLogin.email)
+
+    };
+
+    function loginPassword (event) {
+
+        getLogin.password = event.target.value
+        console.log(getLogin.password)
+
+    };
+
+    async function submitLogin() {
+
+        setErrorLogin(false)
+
+        try {
+            const response = await fetch('http://localhost:3000/user/login',{
+                method: 'POST',
+                headers:{"Content-Type": "application/json"},
+                body: JSON.stringify ({
+
+                    email:getLogin.email,
+                    password:getLogin.password
+            
+                })
+
+            });
+
+            let data = await response.json()
+            setLoading(true)
+            setLoginData(data);
+            console.log(data);
+            const token = data.token
+            
+            if(!token) {
+                console.log("Login não autorizado")
+                setLoading(false);
+                setErrorLogin(true);
+
+            }else{
+
+               localStorage.setItem('token',JSON.stringify(token));
+               setLoading(false);
+               console.log("logado com sucesso");
+
+
+            }
+            
+        } catch (error) {
+            setErrorLogin(true)
+            
+
+            console.log(message.error);
+            
+        }
+       
+        
+
+
+
+    }
+
+    
 
 
     const [visible, setVisible] = useState(false);
@@ -57,9 +132,26 @@ export function Logindropdown () {
                     Entrar
                     </Button>
                     <Drawer title="Fazer Login" placement="right" onClose={onCloseSalesCar} visible={visibleSalesCar}>
-                    <div className='Login__Content'>
+                    <div className= 'Login__Content'>
                         <img className='Login__Img' src={logoImg} alt="" />
-                        <Form className='Form__Login'
+
+                        {   
+                            loading 
+                            ? 
+                            <CARREGANDO /> 
+                            : 
+                            ""
+                        }
+
+                        <Form 
+                            className= {
+                                loading 
+                                ? 
+                                'Login__Content--Disable ' 
+                                : 
+                                'Form__Login' 
+                            }
+
                             name="basic"
                                 labelCol={{
                                     span: 8,
@@ -84,7 +176,7 @@ export function Logindropdown () {
                                     },
                                     ]}
                                 >
-                                    <Input />
+                                    <Input onChange={event => loginEmail(event)}/>
                                 </Form.Item>
 
                                 <Form.Item
@@ -97,7 +189,7 @@ export function Logindropdown () {
                                     },
                                     ]}
                                 >
-                                    <Input.Password />
+                                    <Input.Password onChange={event => loginPassword(event)} />
                                 </Form.Item>
 
                                 <Form.Item
@@ -117,12 +209,14 @@ export function Logindropdown () {
                                     span: 16,
                                     }}
                                 >
-                                    <Button type="primary" htmlType="submit">
+                                    <Button type="primary" onClick={submitLogin}>
                                     Fazer Login
-                                    </Button>
+                                    </Button><br/>
+                                    {errorLogin ? "Login não autorizado" : ''}
                                 </Form.Item>
                         </Form>
                     </div> 
+                    
                     </Drawer>
                </>
               ),
@@ -241,73 +335,6 @@ export function Logindropdown () {
                 
               ),
             },
-            {
-              key: '3',
-              label: (
-                <>
-                <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar}>
-                Lembrar senha
-                </Button>
-                <Drawer title="Lembrar Senha" placement="right" onClose={onCloseSalesCar} visible={visibleSalesCar}>
-                <div className='Login__Content'>
-                    <img className='Login__Img' src={logoImg} alt="" />
-                    <Form className='Form__Login'
-                        name="basic"
-                            labelCol={{
-                                span: 8,
-                            }}
-                            wrapperCol={{
-                                span: 16,
-                            }}
-                            initialValues={{
-                                remember: true,
-                            }}
-                            onFinish={onFinish}
-                            onFinishFailed={onFinishFailed}
-                            autoComplete="on"
-                            >
-                            <Form.Item
-                                label="CPF"
-                                name="CPF"
-                                rules={[
-                                {
-                                    required: true,
-                                    message: 'Por favor, digite seu CPF!',
-                                },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-
-                            <Form.Item
-                                label="E-mail"
-                                name="E-mail"
-                                rules={[
-                                {
-                                    required: true,
-                                    message: 'Por favor, digite seu e-mail!',
-                                },
-                                ]}
-                            >
-                                <Input.Password />
-                            </Form.Item>
-                            <Form.Item
-                                wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                                }}
-                            >
-                                <Button type="primary" htmlType="submit">
-                                Fazer Login
-                                </Button>
-                            </Form.Item>
-                    </Form>
-                </div> 
-                </Drawer>
-           </>
-              ),
-        
-            }
           ]}
         />
         
