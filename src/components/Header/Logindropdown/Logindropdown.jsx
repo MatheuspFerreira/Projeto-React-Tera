@@ -65,6 +65,7 @@ export function Logindropdown () {
 
                localStorage.setItem('token',JSON.stringify(token));
                setLoading(false);
+               setLoginSucessfull(true);
                console.log("logado com sucesso");
 
 
@@ -131,7 +132,17 @@ export function Logindropdown () {
                     <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar}>
                     Entrar
                     </Button>
-                    <Drawer title="Fazer Login" placement="right" onClose={onCloseSalesCar} visible={visibleSalesCar}>
+                    <Drawer 
+                        title= {
+                                    loginSucessfull
+                                    ?
+                                    `Bem vindo, ${loginData.name}`
+                                    :
+                                    "Fazer Login"
+                                }
+
+                        placement="right" onClose={onCloseSalesCar} visible={visibleSalesCar}
+                    >
                     <div className= 'Login__Content'>
                         <img className='Login__Img' src={logoImg} alt="" />
 
@@ -143,9 +154,22 @@ export function Logindropdown () {
                             ""
                         }
 
+                        <div className={loginSucessfull ? "Login__display" : "Login__Content--Disable"}>
+
+                            <ul className="Login_options">
+                                <li>Minha conta</li>
+                                <li>Meus pedidos</li>
+                                <li>Contato</li>
+                                <li>Avaliações e Comentários</li>
+                            </ul>
+
+                        </div>
+
                         <Form 
                             className= {
                                 loading 
+                                ||
+                                loginSucessfull
                                 ? 
                                 'Login__Content--Disable ' 
                                 : 
@@ -167,12 +191,12 @@ export function Logindropdown () {
                                 autoComplete="on"
                                 >
                                 <Form.Item
-                                    label="Nome"
-                                    name="Nome do usuário"
+                                    label="E-mail"
+                                    name="E-mail do usuário"
                                     rules={[
                                     {
                                         required: true,
-                                        message: 'Por favor, digite seu nome!',
+                                        message: 'Por favor, digite seu e-mail!',
                                     },
                                     ]}
                                 >
@@ -210,7 +234,7 @@ export function Logindropdown () {
                                     }}
                                 >
                                     <Button type="primary" onClick={submitLogin}>
-                                    Fazer Login
+                                        Fazer login
                                     </Button><br/>
                                     {errorLogin ? "Login não autorizado" : ''}
                                 </Form.Item>
@@ -348,7 +372,7 @@ export function Logindropdown () {
                 <a href='/#' onClick={(e) => e.preventDefault()} >
                 <Space className='Space' >
                     <svg className="banner-login" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="https://www.w3.org/2000/svg"><mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28" height="28"><path fillRule="evenodd" clipRule="evenodd" d="M18.6375 13.5625C20.6063 12.2062 21.875 9.975 21.875 7.4375C21.875 3.325 18.55 0 14.4375 0C10.325 0 7 3.325 7 7.4375C7 9.975 8.26875 12.2062 10.2375 13.5625C6.34375 14.7875 3.5 18.4625 3.5 22.75V28H25.375V22.75C25.375 18.4625 22.5312 14.7875 18.6375 13.5625Z" fill="#347BBE"></path></mask><g mask="url(#mask0)"><circle cx="14.5" cy="11.5" r="15.5" fill="white"></circle></g></svg>
-                    <span>Faça seu Login</span> 
+                    <span>{loginSucessfull ? `Olá, ${loginData.name}` : "Faça seu Login"}</span> 
                     <DownOutlined />
                 </Space>
                 </a>
