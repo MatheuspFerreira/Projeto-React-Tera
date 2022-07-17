@@ -2,6 +2,7 @@ import { CARREGANDO } from "../../Carregando";
 import 'antd/dist/antd.min.css';
 import { Button, Col, Drawer, Form, Input, message, Row, Space } from 'antd';
 import { useState } from 'react';
+import { useEffect } from "react";
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import {Checkbox} from 'antd';
@@ -15,6 +16,7 @@ export function Logindropdown () {
     const [loading, setLoading] = useState(false);
     const [loginSucessfull, setLoginSucessfull] = useState(false);
     const [loginData, setLoginData]= useState([]);
+  
     
 
     const getLogin = { email:"", password:""};
@@ -51,10 +53,14 @@ export function Logindropdown () {
             });
 
             let data = await response.json()
+
             setLoading(true)
-            setLoginData(data);
             console.log(data);
+
             const token = data.token
+            const login = {name:data.name, email:data.email}
+            setLoginData(login);
+            
             
             if(!token) {
                 console.log("Login não autorizado")
@@ -64,6 +70,8 @@ export function Logindropdown () {
             }else{
 
                localStorage.setItem('token',JSON.stringify(token));
+               localStorage.setItem('login',JSON.stringify(login));
+               setLoginData(login);
                setLoading(false);
                setLoginSucessfull(true);
                console.log("logado com sucesso");
@@ -84,6 +92,38 @@ export function Logindropdown () {
 
 
     }
+
+
+    /*useEffect(() => {
+
+        const token = localStorage.getItem('token')
+        const login2 = localStorage.getItem('login',JSON.parse(login2))
+       
+
+        if(!localStorage.getItem('token')) {
+            console.log("Login não autorizado")
+            setLoginSucessfull(false);
+
+        }else{
+            setLoginSucessfull(true);
+           
+            setLoginData(login2);
+          
+            
+           
+           console.log(token);
+           console.log(login2.name);
+           
+
+
+        }
+
+        
+        
+
+        
+
+    },[])*/
 
     
 
@@ -129,14 +169,14 @@ export function Logindropdown () {
               key: '1',
               label: (
                <>
-                    <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar}>
+                    <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar} >
                     Entrar
                     </Button>
                     <Drawer 
                         title= {
-                                    token
+                                    loginSucessfull
                                     ?
-                                    `Bem vindo, ${loginData.name}`
+                                    `Bem vindo,`
                                     :
                                     "Fazer Login"
                                 }
