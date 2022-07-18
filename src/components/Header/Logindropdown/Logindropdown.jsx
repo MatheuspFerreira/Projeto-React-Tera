@@ -1,11 +1,12 @@
-import { CARREGANDO } from "../../Carregando";
-import 'antd/dist/antd.min.css';
+
 import { Button, Col, Drawer, Form, Input, message, Row, Space } from 'antd';
-import { useState } from 'react';
-import { useEffect } from "react";
+import { Alert } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import {Checkbox} from 'antd';
+import { useState } from 'react';
+import { useEffect } from "react";
+import { CARREGANDO } from "../../Carregando";
 import './Logindropdown.css'
 import logoImg from '../../../_assets/Logoazul.png'
 
@@ -16,37 +17,38 @@ export function Logindropdown () {
     const [loading, setLoading] = useState(false);
     const [loginSucessfull, setLoginSucessfull] = useState(false);
     const [loginData, setLoginData]= useState([]);
-  
-    
-
-    const getLogin = { email:"", password:""};
     const [valueEmail, setValueEmail] = useState([{email:""}])
     const [valuePassword, setValuePassword] = useState([{password:""}])
 
-    function loginEmail (event) {
 
+
+    function getValueLoginEmail (event) {
+        setValueEmail({email:event.target.value});
         
-        
-        getLogin.email = event.target.value
-        setValueEmail({email:getLogin.email})
-        console.log(getLogin.email)
+    };
+
+    function getValueloginPassword (event) {
+        setValuePassword({password:event.target.value});
 
     };
 
-    function loginPassword (event) {
+    function exitLogin () {
+        setLoading(true);
+        localStorage.removeItem('login');
+        localStorage.removeItem('token');
+        setLoginSucessfull(false);
+        showDrawerSalesCar();
+        setLoading(false);
 
-        getLogin.password = event.target.value
-        setValuePassword({password:getLogin.password})
-        console.log(getLogin.password)
-
-    };
+    }
 
     async function submitLogin() {
         console.log(valueEmail,valuePassword)
+        setLoading(true)
         setErrorLogin(false)
 
         try {
-            const response = await fetch('http://localhost:3000/user/login',{
+            const response = await fetch('https://projetotera-back-end.herokuapp.com/user/login',{
                 method: 'POST',
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify ({
@@ -58,13 +60,10 @@ export function Logindropdown () {
 
             });
 
-            let data = await response.json()
-
-            setLoading(true)
+            let data = await response.json();
             console.log(data);
-
-            const token = data.token
-            const login = {name:data.name, email:data.email}
+            const token = data.token;
+            const login = {name:data.name, email:data.email};
             setLoginData(login);
             
             
@@ -86,9 +85,9 @@ export function Logindropdown () {
             }
             
         } catch (error) {
-            setErrorLogin(true)
-            
 
+            setErrorLogin(true)
+            setLoading(false);
             console.log(message.error);
             
         }
@@ -104,20 +103,18 @@ export function Logindropdown () {
 
     const verifcaToken = localStorage.getItem('token');
     const verifcaLogin = localStorage.getItem('login');
-    const token = JSON.parse(verifcaToken);
-    const login = JSON.parse(verifcaLogin);
 
-    console.log(`Verifica Token : ${token}`);
-    console.log(`Verifica Login : ${login}`);
-
-    if(!token && !login){
-
-       setLoginSucessfull(false);
+    if(!verifcaToken && !verifcaLogin){
+        
+        setLoginSucessfull(false);
         console.log('Deu error');
-    }else {
 
+    }else {
+        
+        const login = JSON.parse(verifcaLogin);
         setLoginData(login)
         setLoginSucessfull(true)
+        
     }
 
 
@@ -168,7 +165,14 @@ export function Logindropdown () {
               label: (
                <>
                     <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar} >
-                        {loginSucessfull ? "Minha Conta" : "Entrar"}
+                        {
+                            loginSucessfull 
+                            ?
+                            "Minha Conta"
+                            :
+                            "Entrar"
+                            
+                        }
                     </Button>
                     <Drawer 
                         title= {
@@ -240,7 +244,7 @@ export function Logindropdown () {
                                 >
                                     <Input 
                                      
-                                     onChange={event => loginEmail(event)}/>
+                                     onChange={event => getValueLoginEmail(event)}/>
                                 </Form.Item>
 
                                 <Form.Item
@@ -253,7 +257,7 @@ export function Logindropdown () {
                                     },
                                     ]}
                                 >
-                                    <Input.Password onChange={event => loginPassword(event)} />
+                                    <Input.Password onChange={event => getValueloginPassword(event)} />
                                 </Form.Item>
 
                                 <Form.Item
@@ -276,7 +280,18 @@ export function Logindropdown () {
                                     <Button type="primary" onClick={submitLogin}>
                                         Fazer login
                                     </Button><br/>
-                                    {errorLogin ? "Login não autorizado" : ''}
+                                    {   
+                                        errorLogin 
+                                        ?
+                                        <Alert className="login__errormsg"
+                                            message="E-mail ou senha incorretos"
+                                            description=""
+                                            type="error"
+                                            showIcon
+                                        /> 
+                                        :
+                                        ''
+                                    }
                                 </Form.Item>
                         </Form>
                     </div> 
@@ -289,10 +304,11 @@ export function Logindropdown () {
               key: '2',
               label: ( 
                 <>
-                <Button className='Bnt__Cadastrar' onClick={showDrawer}>
+                <Button className='Bnt__Cadastrar' onClick={loginSucessfull ? exitLogin  : showDrawer}>
                     {   
                         loginSucessfull 
-                        ? "Sair" 
+                        ? 
+                        "Sair" 
                         :
                         "Cadastrar"
 

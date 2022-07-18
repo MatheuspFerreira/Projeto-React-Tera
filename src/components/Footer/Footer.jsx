@@ -28,7 +28,7 @@ async function saveDataFormNewLetters (event) {
 
         if ( newLettersData.name && newLettersData.email) {
         
-            const response = await fetch('http://localhost:3000/newletter/register',{
+            const response = await fetch('https://projetotera-back-end.herokuapp.com/newletter/register',{
                 method:'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify ({

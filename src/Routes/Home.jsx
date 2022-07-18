@@ -27,7 +27,7 @@ export function Home() {
     async function products () {
       try {
 
-        const response =  await fetch('http://localhost:3000/products/all');
+        const response =  await fetch('https://projetotera-back-end.herokuapp.com/products/all');
         const data =  await response.json();
         msgRecebida(data);
         alterarCarrengado(false);
