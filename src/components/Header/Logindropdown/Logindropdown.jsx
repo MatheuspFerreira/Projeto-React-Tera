@@ -11,7 +11,7 @@ import logoImg from '../../../_assets/Logoazul.png'
 
 
 export function Logindropdown () {
-
+    
     const [errorLogin, setErrorLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     const [loginSucessfull, setLoginSucessfull] = useState(false);
@@ -20,10 +20,15 @@ export function Logindropdown () {
     
 
     const getLogin = { email:"", password:""};
+    const [valueEmail, setValueEmail] = useState([{email:""}])
+    const [valuePassword, setValuePassword] = useState([{password:""}])
 
     function loginEmail (event) {
 
+        
+        
         getLogin.email = event.target.value
+        setValueEmail({email:getLogin.email})
         console.log(getLogin.email)
 
     };
@@ -31,12 +36,13 @@ export function Logindropdown () {
     function loginPassword (event) {
 
         getLogin.password = event.target.value
+        setValuePassword({password:getLogin.password})
         console.log(getLogin.password)
 
     };
 
     async function submitLogin() {
-
+        console.log(valueEmail,valuePassword)
         setErrorLogin(false)
 
         try {
@@ -45,8 +51,8 @@ export function Logindropdown () {
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify ({
 
-                    email:getLogin.email,
-                    password:getLogin.password
+                    email:valueEmail.email,
+                    password:valuePassword.password
             
                 })
 
@@ -94,37 +100,29 @@ export function Logindropdown () {
     }
 
 
-    /*useEffect(() => {
+  useEffect(()=>{
 
-        const token = localStorage.getItem('token')
-        const login2 = localStorage.getItem('login',JSON.parse(login2))
-       
+    const verifcaToken = localStorage.getItem('token');
+    const verifcaLogin = localStorage.getItem('login');
+    const token = JSON.parse(verifcaToken);
+    const login = JSON.parse(verifcaLogin);
 
-        if(!localStorage.getItem('token')) {
-            console.log("Login não autorizado")
-            setLoginSucessfull(false);
+    console.log(`Verifica Token : ${token}`);
+    console.log(`Verifica Login : ${login}`);
 
-        }else{
-            setLoginSucessfull(true);
-           
-            setLoginData(login2);
-          
-            
-           
-           console.log(token);
-           console.log(login2.name);
-           
+    if(!token && !login){
+
+       setLoginSucessfull(false);
+        console.log('Deu error');
+    }else {
+
+        setLoginData(login)
+        setLoginSucessfull(true)
+    }
 
 
-        }
 
-        
-        
-
-        
-
-    },[])*/
-
+  },[])
     
 
 
@@ -170,13 +168,13 @@ export function Logindropdown () {
               label: (
                <>
                     <Button className='Bnt__Cadastrar' type="" onClick={showDrawerSalesCar} >
-                    Entrar
+                        {loginSucessfull ? "Minha Conta" : "Entrar"}
                     </Button>
                     <Drawer 
                         title= {
-                                    loginSucessfull
+                                    loginData.name
                                     ?
-                                    `Bem vindo,`
+                                    `Bem vindo, ${loginData.name}`
                                     :
                                     "Fazer Login"
                                 }
@@ -240,7 +238,9 @@ export function Logindropdown () {
                                     },
                                     ]}
                                 >
-                                    <Input onChange={event => loginEmail(event)}/>
+                                    <Input 
+                                     
+                                     onChange={event => loginEmail(event)}/>
                                 </Form.Item>
 
                                 <Form.Item
@@ -290,7 +290,14 @@ export function Logindropdown () {
               label: ( 
                 <>
                 <Button className='Bnt__Cadastrar' onClick={showDrawer}>
-                    Cadastrar
+                    {   
+                        loginSucessfull 
+                        ? "Sair" 
+                        :
+                        "Cadastrar"
+
+                    }
+
                 </Button>
                 < Drawer
                     title="Criar nova conta"

@@ -27,7 +27,7 @@ export function Home() {
     async function products () {
       try {
 
-        const response =  await fetch('http://127.0.0.1:8000/api/products');
+        const response =  await fetch('http://localhost:3000/products/all');
         const data =  await response.json();
         msgRecebida(data);
         alterarCarrengado(false);
@@ -35,7 +35,7 @@ export function Home() {
 
       }catch (error){
 
-        console.log(`${error}`);
+        console.log(`${error.mensage}`);
         
       }
       
