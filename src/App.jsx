@@ -4,6 +4,7 @@ import { Home } from "./Routes"
 import { Header } from "./components/Header"
 import { Routes, Route} from "react-router-dom";
 import { Voyager } from './Routes'
+import { Searchproduct } from './Routes'
 
 import './styles/App.css'
 
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<Voyager />} />
+            <Route path="/find" element={<Searchproduct />} />
             
             
             

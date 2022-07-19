@@ -107,7 +107,7 @@ export function Logindropdown () {
     if(!verifcaToken && !verifcaLogin){
         
         setLoginSucessfull(false);
-        console.log('Deu error');
+        console.log('Usuário não está logado');
 
     }else {
         

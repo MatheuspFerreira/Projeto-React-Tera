@@ -41,7 +41,7 @@ export function Home() {
       
     }
     
-  products();
+    products();
                
    
   }, []);
