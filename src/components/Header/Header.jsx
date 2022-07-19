@@ -6,67 +6,45 @@ import logoHeader from '../../_assets/LogoBranco.png'
 import './header.css';
 import { Topbar } from './Topbar';
 import { useState } from 'react'
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 
 export function Header() {
-  const [findValue, setFindValue]=useState([]);
-  const [findProduct2, setFindProduct2] =useState([]);
+  const [findValue, setFindValue] = useState([]);
+  const [findProduct2, setFindProduct2] = useState([]);
 
 
-  function getFindValue (event) {
+  function getFindValue(event) {
     setFindValue(event.target.value)
-    
-  
   }
-
- 
- 
- 
-  async function findProduct () {
-    console.log(findValue)
-   
+  let navigate = useNavigate();
+  async function findProduct(event) {
     try {
-
-      const response =  await fetch('https://projetotera-back-end.herokuapp.com/products/all');
-      const data =  await response.json();
-      setFindProduct2(data)
-      console.log(data);
-      <Searchproduct  products={data} />
-
-      
-      
-      
-
-    }catch (error){
-
-      console.log(`${error.mensage}`);
-      
+      event.preventDefault();
+      navigate(`/find/${findValue}`,{replace:true})
+    } catch (erro) {
+      console.log(`${erro.mensage}`);
     }
-    
-    
-    
   }
-  
-  
+
+
 
   return (
-      <header>
-        <div className="first-content">
-          <a href="/#" className="link-header"><img   className="logo-mz" src={logoHeader} alt="MZ eletrônicos.logo"/></a>
-          <section className="container-buscador">
-            <input className="buscador" type="text" placeholder="Busque aqui" onChange={event => getFindValue(event)}/>
-            <button className='Bnt__Buscador'><img className='Bnt__img' src={iconeBntBuscador} alt="Buscador img" onClick={findProduct} /></button>
-          </section>
-          <div className="Login">
-            <Logindropdown />
-            <CART />
-          </div>
+    <header>
+      <div className="first-content">
+        <a href="/#" className="link-header"><img className="logo-mz" src={logoHeader} alt="MZ eletrônicos.logo" /></a>
+        <form className="container-buscador" onSubmit={findProduct}>
+          <input className="buscador" type="text" placeholder="Busque aqui" onChange={event => getFindValue(event)} />
+          <button className='Bnt__Buscador'><img className='Bnt__img' src={iconeBntBuscador} alt="Buscador img" onClick={findProduct} /></button>
+        </form>
+        <div className="Login">
+          <Logindropdown />
+          <CART />
         </div>
-          <div className="second-content">
-            <Topbar />
-          </div>
+      </div>
+      <div className="second-content">
+        <Topbar />
+      </div>
     </header>
-    );
+  );
 }

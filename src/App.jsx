@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<Voyager />} />
-            <Route path="/find" element={<Searchproduct />} />
+            <Route path="/find/:produto" element={<Searchproduct />} />
             
             
             

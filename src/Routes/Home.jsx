@@ -31,7 +31,6 @@ export function Home() {
         const data =  await response.json();
         msgRecebida(data);
         alterarCarrengado(false);
-        console.log(data);
 
       }catch (error){
 
