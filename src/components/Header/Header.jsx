@@ -9,42 +9,63 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 
+
+
 export function Header() {
-  const [findValue, setFindValue] = useState([]);
-  const [findProduct2, setFindProduct2] = useState([]);
+  const [findValue, setFindValue]=useState([]);
+  const [findProduct2, setFindProduct2] =useState([]);
+ 
 
 
-  function getFindValue(event) {
+  function getFindValue (event) {
     setFindValue(event.target.value)
+    
+  
   }
+
+ 
+ 
   let navigate = useNavigate();
-  async function findProduct(event) {
+  async function findProduct (event) {
+    
+   
     try {
+
       event.preventDefault();
       navigate(`/find/${findValue}`,{replace:true})
-    } catch (erro) {
-      console.log(`${erro.mensage}`);
+
+      
+      
+      
+    }catch (error){
+
+      console.log(`${error.mensage}`);
+      
     }
+    
+    
+    
   }
-
-
+  
+  
 
   return (
-    <header>
-      <div className="first-content">
-        <a href="/#" className="link-header"><img className="logo-mz" src={logoHeader} alt="MZ eletrônicos.logo" /></a>
-        <form className="container-buscador" onSubmit={findProduct}>
-          <input className="buscador" type="text" placeholder="Busque aqui" onChange={event => getFindValue(event)} />
-          <button className='Bnt__Buscador'><img className='Bnt__img' src={iconeBntBuscador} alt="Buscador img" onClick={findProduct} /></button>
-        </form>
-        <div className="Login">
-          <Logindropdown />
-          <CART />
+      <header>
+        <div className="first-content">
+        
+          <a href="/#" className="link-header"><img   className="logo-mz" src={logoHeader} alt="MZ eletrônicos.logo"/></a>
+          <form className="container-buscador" onSubmit={findProduct}>
+            <input className="buscador" type="text" placeholder="Busque aqui" onChange={event => getFindValue(event)}/>
+            <button className='Bnt__Buscador'><img className='Bnt__img' src={iconeBntBuscador} alt="Buscador img" /></button>
+          </form>
+          <div className="Login">
+            <Logindropdown />
+            <CART />
+          </div>
         </div>
-      </div>
-      <div className="second-content">
-        <Topbar />
-      </div>
+          <div className="second-content">
+            <Topbar />
+          </div>
     </header>
-  );
+    );
 }
