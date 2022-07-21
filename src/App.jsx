@@ -3,8 +3,8 @@ import { Footer } from "./components/Footer";
 import { Home } from "./Routes"
 import { Header } from "./components/Header"
 import { Routes, Route} from "react-router-dom";
-import { Voyager } from './Routes'
 import { Searchproduct } from './Routes'
+import { Pageproduct } from './components/Produto/Pageproduct'
 
 import './styles/App.css'
 
@@ -17,8 +17,9 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/admin" element={<Voyager />} />
+           
             <Route path="/find/:produto" element={<Searchproduct />} />
+            <Route path="/produto/:id" element={<Pageproduct />} />
             
             
             

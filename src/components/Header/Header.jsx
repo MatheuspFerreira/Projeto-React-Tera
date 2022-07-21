@@ -1,4 +1,3 @@
-import { Searchproduct } from '../../Routes';
 import { CART } from '../Cart';
 import { Logindropdown } from './Logindropdown';
 import iconeBntBuscador from '../../_assets/icone.png'
@@ -13,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const [findValue, setFindValue]=useState([]);
-  const [findProduct2, setFindProduct2] =useState([]);
+
  
 
 
