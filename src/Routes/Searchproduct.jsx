@@ -3,9 +3,13 @@ import { useParams } from "react-router-dom"
 import { Produto } from "../components/Produto"
 import '../styles/Searchproduct.css'
 import { CARREGANDO } from "../components/Carregando";
+import bannerFooter from "../_assets/dell.png"
+import { CarouselComponente } from "../components/Carousel" 
+import { SECTION } from "../components/Section"
+import { Result } from 'antd';
 
 
-
+ 
 
 
 
@@ -18,10 +22,7 @@ export function Searchproduct () {
     const [loading, setLoading] = useState(false)
     const { produto } = useParams()
 
-    
-    
-    
-    
+
     useEffect(() => {
 
         async function search(){
@@ -58,14 +59,18 @@ export function Searchproduct () {
     return (
 
         <>
-            <div className="search__Container">
-                {
-                    productsFound 
-                    &&
-                    
-                    products.map((currentMsg, index) => 
-                        <Produto key = {`mensagens-${index}`}
-            
+           <div className="search__mainContainer">
+                <CarouselComponente />
+                <SECTION textSection={` ${produto}`}/> 
+                <div className="search__Container">
+                        
+                    {
+                        productsFound 
+                        &&
+                        
+                        products.map((currentMsg, index) => 
+                            <Produto key = {`mensagens-${index}`}
+                
                                 productName = {currentMsg.name}
                                 value = {currentMsg.price}
                                 valueStrike ={currentMsg.pricestrike}
@@ -78,31 +83,40 @@ export function Searchproduct () {
                                 starcondition2 = {1}
                                 starcondition3 = {0}
                                 starcondition4 = {0}
-                
-                        />)
-                        
-                        
                     
-                    
-            
-                }
-                {
-                    loading
-                    &&
-                    <CARREGANDO textCarregando="Procurando"/>
-                    
-                    
+                            />)
+                    }
+                    {
+                        loading
+                        &&
+                        <CARREGANDO textCarregando="Procurando"/>
 
-                }
+                    }
 
-                <section className={loading || productsFound ? "search__text--disabled" : "search__text"}>
-                    <h1 >"Product not found"</h1>
-                </section>
+                    <section 
+                        className=
+                        {
+                            loading 
+                            || 
+                            productsFound 
+                            ? 
+                            "search__text--disabled" 
+                            : 
+                            "search__text"
+
+                        }
+                    >
+                        
+                        <Result
+                            title={`Ops! Nenhum resultado encontrado para "${produto}"`} 
+                        />
+
+                    </section>               
+                </div>
+                <img className='Banner_dell' src={bannerFooter} alt="banner dell.png" />
 
             </div>
-        
-        
-        
+
         </>
     )
     

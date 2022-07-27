@@ -4,9 +4,9 @@ import { Home } from "./Routes"
 import { Header } from "./components/Header"
 import { Routes, Route} from "react-router-dom";
 import { Searchproduct } from './Routes'
-import { Pageproduct } from './components/Produto/Pageproduct'
-
+import { Productpage } from './components/Produto/Productpage'
 import './styles/App.css'
+
 
 function App() {
 
@@ -18,8 +18,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
            
-            <Route path="/find/:produto" element={<Searchproduct />} />
-            <Route path="/produto/:id" element={<Pageproduct />} />
+            <Route path="/search/:produto" element={<Searchproduct />} />
+            <Route path="/produto/:id" element={<Productpage />} />
             
             
             

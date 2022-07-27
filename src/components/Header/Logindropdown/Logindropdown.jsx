@@ -39,8 +39,9 @@ export function Logindropdown () {
         setLoginSucessfull(false);
         showDrawerSalesCar();
         setLoading(false);
+        setLoginData(false)
 
-    }
+    };
 
     async function submitLogin() {
         console.log(valueEmail,valuePassword)
@@ -82,7 +83,7 @@ export function Logindropdown () {
                console.log("logado com sucesso");
 
 
-            }
+            };
             
         } catch (error) {
 
@@ -90,13 +91,13 @@ export function Logindropdown () {
             setLoading(false);
             console.log(message.error);
             
-        }
+        };
        
         
 
 
 
-    }
+    };
 
 
   useEffect(()=>{

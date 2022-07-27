@@ -1,17 +1,27 @@
-.search__Container {
+
+.search__mainContainer {
     width: 64%;
+    margin: 0 17.5%;
+    
+}
+
+.search__Container {
+    width: 100%;
     height: auto;
-    min-height: 300px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 30px 0;
-    margin:  0 17.5%;
+    padding-top: 35px;
     background-color: rgb(240, 233, 233);
-    
-    
    
+    
+}
+
+.search__text {
+    font-size: 24px;
+    
 }
 
 .search__text--disabled {

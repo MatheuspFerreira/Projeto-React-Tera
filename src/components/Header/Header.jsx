@@ -31,7 +31,7 @@ export function Header() {
     try {
 
       event.preventDefault();
-      navigate(`/find/${findValue}`,{replace:true})
+      navigate(`/search/${findValue}`,{replace:true})
 
       
       
