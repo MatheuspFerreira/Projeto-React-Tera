@@ -127,7 +127,7 @@ export function Productpage ({starcondition ="1", discount ='0', stock='0'}) {
                         <input type="text" className="productpage__input" maxLength={9} placeholder="CEP: 00000-000" onChange={event => cepMask(event)}/>
                         <button className='productpage__btnOk'>ok</button>
                         {errorCep && <h1>CEP não encontrado</h1>} 
-                        {shipping && `${shipping.bairro} receba em até x dias`}                 
+                        {shipping && `${shipping.logradouro},${shipping.localidade} receba em até x dias`}                 
                     </form>
                     
 

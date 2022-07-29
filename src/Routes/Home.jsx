@@ -22,7 +22,7 @@ export function Home() {
     async function products () {
       try {
 
-        const response =  await fetch('https://projetotera-back-end.herokuapp.com/products/all');
+        const response =  await fetch('https://osnbye9001.execute-api.us-east-1.amazonaws.com/dev/products');
         const data =  await response.json();
         msgRecebida(data);
         alterarCarrengado(false);

@@ -61,7 +61,7 @@ export function Searchproduct () {
         <>
            <div className="search__mainContainer">
                 <CarouselComponente />
-                <SECTION textSection={` ${produto}`}/> 
+                <SECTION textSection={` Você está procurando por ${produto}`}/> 
                 <div className="search__Container">
                         
                     {
